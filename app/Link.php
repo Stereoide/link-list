@@ -59,6 +59,11 @@ class Link extends Model
         $this->save();
     }
 
+    public function isRead()
+    {
+        return !is_null($this->read_at);
+    }
+
     public function dismiss($timestamp = null)
     {
         if (!is_null($timestamp)) {
@@ -73,5 +78,10 @@ class Link extends Model
     {
         $this->dismissed_at = null;
         $this->save();
+    }
+
+    public function isDismissed()
+    {
+        return !is_null($this->dismissed_at);
     }
 }
