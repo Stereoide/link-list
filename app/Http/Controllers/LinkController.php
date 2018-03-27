@@ -14,7 +14,7 @@ class LinkController extends Controller
      */
     public function index()
     {
-        //
+        dd('index');
     }
 
     /**
@@ -24,7 +24,7 @@ class LinkController extends Controller
      */
     public function create()
     {
-        //
+        dd('create');
     }
 
     /**
@@ -46,7 +46,7 @@ class LinkController extends Controller
      */
     public function show(Link $link)
     {
-        //
+        dd('show');
     }
 
     /**
@@ -57,7 +57,7 @@ class LinkController extends Controller
      */
     public function edit(Link $link)
     {
-        //
+        dd('edit');
     }
 
     /**
