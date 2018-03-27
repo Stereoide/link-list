@@ -20,6 +20,10 @@
                         <label for="links">Links</label>
                         <textarea class="form-control" id="links" name="links" rows="25"></textarea>
                     </div>
+
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary" value="Collect" />
+                    </div>
                 </div>
             </div>
         </div>
