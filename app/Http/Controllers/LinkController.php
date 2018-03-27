@@ -14,7 +14,9 @@ class LinkController extends Controller
      */
     public function index()
     {
-        dd('index');
+        $links = collect([]);
+
+        return view('pages.links.index')->with(compact('links'));
     }
 
     /**
