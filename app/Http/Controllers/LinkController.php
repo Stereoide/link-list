@@ -84,4 +84,15 @@ class LinkController extends Controller
     {
         //
     }
+
+    public function collectLinks()
+    {
+        return view('pages.links.collect');
+    }
+
+    public function processCollectedLinks(Request $request)
+    {
+        $links = optional($request->input('links'));
+        dd($links);
+    }
 }
