@@ -2,6 +2,7 @@
 
 @section('content')
 <form method="post" action="{{ route('processCollectedLinks') }}">
+@csrf
 
 <div class="container">
     <div class="row justify-content-center">
