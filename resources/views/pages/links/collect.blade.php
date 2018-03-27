@@ -18,8 +18,8 @@
                 @endif
 
                     <div class="form-group">
-                        <label for="links">Links</label>
-                        <textarea class="form-control" id="links" name="links" rows="25"></textarea>
+                        <label for="urls">Links</label>
+                        <textarea class="form-control" id="urls" name="urls" rows="25"></textarea>
                     </div>
 
                     <div class="form-group">

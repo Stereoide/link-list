@@ -92,7 +92,17 @@ class LinkController extends Controller
 
     public function processCollectedLinks(Request $request)
     {
-        $links = collect(explode("\n", $request->input('links')))->map(function($link) { return trim($link); });
-        dd($links);
+        collect(explode("\n", $request->input('urls')))
+            ->map(function($url) { return trim($url); })
+            ->each(function($url) {
+                /* Determine whether this link is already collected */
+
+                $link = Link::where('url', $url)->first();
+                if (is_null($link)) {
+                    $link = Link::create(['url' => $url]);
+                }
+            });
+
+        return redirect(route('links.index'));
     }
 }
