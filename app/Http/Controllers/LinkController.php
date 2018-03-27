@@ -92,7 +92,7 @@ class LinkController extends Controller
 
     public function processCollectedLinks(Request $request)
     {
-        $links = optional($request->input('links'));
+        $links = collect(explode("\n", $request->input('links')))->map(function($link) { return trim($link); });
         dd($links);
     }
 }
