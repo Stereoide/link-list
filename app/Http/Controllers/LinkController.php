@@ -16,6 +16,7 @@ class LinkController extends Controller
     public function index()
     {
         $links = Link::notDismissed()->get();
+        $links = Link::all();
 
         return view('pages.links.index')->with(compact('links'));
     }
@@ -86,11 +87,18 @@ class LinkController extends Controller
         //
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function collectLinks()
     {
         return view('pages.links.collect');
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function processCollectedLinks(Request $request)
     {
         collect(explode("\n", $request->input('urls')))
@@ -107,6 +115,10 @@ class LinkController extends Controller
         return redirect(route('links.index'));
     }
 
+    /**
+     * @param Link $link
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function follow(Link $link)
     {
         $link->read_at = Carbon::now();
