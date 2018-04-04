@@ -19,6 +19,8 @@ class Link extends Model
         'dismissed_at',
     ];
 
+    public $dates = ['created_at', 'updated_at', 'read_at', 'dismissed_at', ];
+
     /* Scopes */
 
     public function scopeUnread($query)
