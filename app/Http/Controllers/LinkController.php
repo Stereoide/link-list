@@ -16,7 +16,6 @@ class LinkController extends Controller
     public function index()
     {
         $links = Link::notDismissed()->get();
-        $links = Link::all();
 
         return view('pages.links.index')->with(compact('links'));
     }
