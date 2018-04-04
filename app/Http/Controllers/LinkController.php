@@ -114,4 +114,16 @@ class LinkController extends Controller
 
         return redirect($link->url);
     }
+
+    /**
+     * @param Link $link
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function dismiss(Link $link)
+    {
+        $link->dismissed_at = Carbon::now();
+        $link->save();
+
+        return redirect(route('links.index'));
+    }
 }

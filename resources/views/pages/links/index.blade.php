@@ -26,6 +26,8 @@
                         @endif
                         @if ($link->isDismissed())
                             Dismissed at {{ $link->dismissed_at->format('d.m.Y H:i') }}
+                        @else
+                            <a href="{{ route('links.dismiss', $link->id) }}">dismiss</a>
                         @endif
                         </li>
                     @endforeach
