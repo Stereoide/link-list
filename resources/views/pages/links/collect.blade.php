@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<form method="post" action="{{ route('processCollectedLinks') }}">
+<form method="post" action="{{ route('links.processCollected') }}">
 @csrf
 
 <div class="container">
