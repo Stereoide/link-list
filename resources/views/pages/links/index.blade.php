@@ -20,7 +20,7 @@
                         @if (!empty($link->title))
                             {{ $link->title }}<br />
                         @endif
-                            <a href="{{ $link->url }}" target="_blank">{{ $link->url }}</a><br />
+                            <a href="{{ route('followLink', $link->id) }}" target="_blank">{{ $link->url }}</a><br />
                         @if ($link->isRead())
                             Read at {{ $link->read_at->format('d.m.Y H:i') }}@if ($link->isDismissed()), @endif
                         @endif

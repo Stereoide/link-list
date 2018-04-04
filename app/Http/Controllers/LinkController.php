@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Link;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class LinkController extends Controller
@@ -104,5 +105,13 @@ class LinkController extends Controller
             });
 
         return redirect(route('links.index'));
+    }
+
+    public function follow(Link $link)
+    {
+        $link->read_at = Carbon::now();
+        $link->save();
+
+        return redirect($link->url);
     }
 }

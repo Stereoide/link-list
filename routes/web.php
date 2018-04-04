@@ -17,5 +17,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/links/collect', 'LinkController@collectLinks')->name('collectLinks');
     Route::post('/links/collect', 'LinkController@processCollectedLinks')->name('processCollectedLinks');
+    Route::get('/links/{link}/follow', 'LinkController@follow')->name('followLink');
     Route::resource('/links', 'LinkController');
 });
