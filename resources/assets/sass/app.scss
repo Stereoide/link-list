@@ -12,3 +12,32 @@
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
+
+.link .timestamps {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.25s ease-out;
+}
+
+.link:hover .timestamps {
+  height: 1.6em;
+}
+
+.link .timestamps UL {
+  margin: 0;
+  padding: 0;
+}
+
+.link .timestamps UL LI {
+  list-style-type: none;
+  float: left;
+  margin-left: 0.5em;
+  border-left: solid 1px #000000;
+  padding-left: 0.5em;
+}
+
+.link .timestamps UL LI:first-of-type {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}

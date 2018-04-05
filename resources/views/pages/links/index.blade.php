@@ -16,19 +16,35 @@
 
                     <ul class="list-group">
                     @foreach ($links as $link)
-                        <li class="list-group-item">
+                        <li class="list-group-item link">
                         @if (!empty($link->title))
                             {{ $link->title }}<br />
                         @endif
                             <a href="{{ route('links.follow', $link->id) }}" target="_blank">{{ $link->url }}</a><br />
-                        @if ($link->isRead())
-                            Read at {{ $link->read_at->format('d.m.Y H:i') }}@if ($link->isDismissed()), @endif
-                        @endif
-                        @if ($link->isDismissed())
-                            Dismissed at {{ $link->dismissed_at->format('d.m.Y H:i') }}
-                        @else
-                            <a href="{{ route('links.dismiss', $link->id) }}">dismiss</a>
-                        @endif
+                            <div class="links">
+                                <a href="{{ route('links.dismiss', $link->id) }}" class="text-dark">dismiss</a>
+                            </div>
+                            <div class="timestamps text-secondary">
+                                <ul>
+                                    <li>
+                                        {{ $link->created_at->format('d.m.Y') }}
+                                    </li>
+                                    <li>
+                                        @if ($link->isRead())
+                                            Read at {{ $link->read_at->format('d.m.Y') }}@if ($link->isDismissed()), @endif
+                                        @else
+                                            not yet read
+                                        @endif
+                                    </li>
+                                    <li>
+                                        @if ($link->isDismissed())
+                                            Dismissed at {{ $link->dismissed_at->format('d.m.Y') }}
+                                        @else
+                                            not yet dismissed
+                                        @endif
+                                    </li>
+                                </ul>
+                            </div>
                         </li>
                     @endforeach
                     </ul>
