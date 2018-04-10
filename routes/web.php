@@ -19,5 +19,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/links/collect', 'LinkController@processCollectedLinks')->name('links.processCollected');
     Route::get('/links/{link}/follow', 'LinkController@follow')->name('links.follow');
     Route::get('/links/{link}/dismiss', 'LinkController@dismiss')->name('links.dismiss');
+    Route::get('/links/{link}/star', 'LinkController@star')->name('links.star');
+    Route::get('/links/{link}/unstar', 'LinkController@unstar')->name('links.unstar');
     Route::resource('/links', 'LinkController');
 });

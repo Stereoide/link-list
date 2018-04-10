@@ -137,4 +137,26 @@ class LinkController extends Controller
 
         return redirect(route('links.index'));
     }
+
+    /**
+     * @param Link $link
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function star(Link $link)
+    {
+        $link->star();
+
+        return redirect(route('links.index'));
+    }
+
+    /**
+     * @param Link $link
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function unstar(Link $link)
+    {
+        $link->removeStar();
+
+        return redirect(route('links.index'));
+    }
 }

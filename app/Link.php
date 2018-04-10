@@ -17,9 +17,10 @@ class Link extends Model
         'title',
         'read_at',
         'dismissed_at',
+        'starred_at',
     ];
 
-    public $dates = ['created_at', 'updated_at', 'read_at', 'dismissed_at', ];
+    public $dates = ['created_at', 'updated_at', 'read_at', 'dismissed_at', 'starred_at', ];
 
     /* Scopes */
 
@@ -43,11 +44,21 @@ class Link extends Model
         return $query->WhereNotNull('dismissed_at');
     }
 
+    public function scopeNotStarred($query)
+    {
+        return $query->whereNull('starred_at');
+    }
+
+    public function scopeStarred($query)
+    {
+        return $query->WhereNotNull('starred_at');
+    }
+
     /* Methods */
 
     public function read($timestamp = null)
     {
-        if (!is_null($timestamp)) {
+        if (is_null($timestamp)) {
             $timestamp = Carbon::now();
         }
 
@@ -68,7 +79,7 @@ class Link extends Model
 
     public function dismiss($timestamp = null)
     {
-        if (!is_null($timestamp)) {
+        if (is_null($timestamp)) {
             $timestamp = Carbon::now();
         }
 
@@ -85,5 +96,26 @@ class Link extends Model
     public function isDismissed()
     {
         return !is_null($this->dismissed_at);
+    }
+
+    public function star($timestamp = null)
+    {
+        if (is_null($timestamp)) {
+            $timestamp = Carbon::now();
+        }
+
+        $this->starred_at = $timestamp;
+        $this->save();
+    }
+
+    public function removeStar()
+    {
+        $this->starred_at = null;
+        $this->save();
+    }
+
+    public function isStarred()
+    {
+        return !is_null($this->starred_at);
     }
 }

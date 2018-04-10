@@ -16,12 +16,18 @@
 
                     <ul class="list-group">
                     @foreach ($links as $link)
-                        <li class="list-group-item link">
+                        <li class="list-group-item link @if ($link->isStarred()) starred @endif">
                         @if (!empty($link->title))
                             {{ $link->title }}<br />
                         @endif
                             <a href="{{ route('links.follow', $link->id) }}" target="_blank">{{ $link->url }}</a><br />
                             <div class="links">
+                            @if ($link->isStarred())
+                                <a href="{{ route('links.unstar', $link->id) }}" class="text-dark">remove star</a>
+                            @else
+                                <a href="{{ route('links.star', $link->id) }}" class="text-dark">star</a>
+                            @endif
+
                                 <a href="{{ route('links.dismiss', $link->id) }}" class="text-dark">dismiss</a>
                             </div>
                             <div class="timestamps text-secondary">
