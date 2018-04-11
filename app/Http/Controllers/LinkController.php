@@ -100,14 +100,45 @@ class LinkController extends Controller
      */
     public function processCollectedLinks(Request $request)
     {
-        collect(explode("\n", $request->input('urls')))
+        $urls = $request->input('urls');
+        $ignoreOnetabTitles = ($request->has('ignore-onetab-titles') && $request->input('ignore-onetab-titles') === 'true');
+        $ignoreUtmTags = ($request->has('ignore-utm-tags') && $request->input('ignore-utm-tags') === 'true');
+
+        $options = [
+            'ignoreOnetabTitles' => $ignoreOnetabTitles,
+            'ignoreUtmTags' => $ignoreUtmTags,
+        ];
+
+        collect(explode("\n", $urls))
             ->map(function($url) { return trim($url); })
-            ->each(function($url) {
+            ->each(function($url) use ($options) {
+                $url .= "\n";
+                $title = null;
+
+                /* Handle OneTab settings */
+
+                if (!$options['ignoreOnetabTitles']) {
+                    preg_match('/ \\| (.*)/', $url, $matches);
+                    if (isset($matches[1])) {
+                        $title = $matches[1];
+                    }
+                }
+
+                $url = preg_replace('/ \\| .*/', '', $url);
+
+                /* Handle utm_* settings */
+
+                if ($options['ignoreUtmTags']) {
+                    foreach (['&', '\\?', ] as $delimiter) {
+                        $url = preg_replace('/' . $delimiter . 'utm_.*(\s)/U', '\\1', $url);
+                    }
+                }
+
                 /* Determine whether this link is already collected */
 
                 $link = Link::where('url', $url)->first();
                 if (is_null($link)) {
-                    $link = Link::create(['url' => $url]);
+                    $link = Link::create(['url' => $url, 'title' => $title, ]);
                 }
             });
 
