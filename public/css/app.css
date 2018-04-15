@@ -10013,14 +10013,14 @@ a.text-dark:focus {
 }
 
 .link .timestamps {
-  height: 0;
+  /* height: 0; */
   overflow: hidden;
   -webkit-transition: height 0.25s ease-out;
   transition: height 0.25s ease-out;
 }
 
 .link:hover .timestamps {
-  height: 1.6em;
+  /* height: 1.6em; */
 }
 
 .link .timestamps UL {
