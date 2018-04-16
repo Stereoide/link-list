@@ -15,7 +15,79 @@ class LinkController extends Controller
      */
     public function index()
     {
+        $links = Link::unread()->notDismissed()->notStarred()->get();
+
+        return view('pages.links.index')->with(compact('links'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function read()
+    {
+        $links = Link::read()->get();
+
+        return view('pages.links.index')->with(compact('links'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function unread()
+    {
+        $links = Link::unread()->get();
+
+        return view('pages.links.index')->with(compact('links'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function dismissed()
+    {
+        $links = Link::dismissed()->get();
+
+        return view('pages.links.index')->with(compact('links'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function notDismissed()
+    {
         $links = Link::notDismissed()->get();
+
+        return view('pages.links.index')->with(compact('links'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function starred()
+    {
+        $links = Link::starred()->get();
+
+        return view('pages.links.index')->with(compact('links'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function notStarred()
+    {
+        $links = Link::notStarred()->get();
 
         return view('pages.links.index')->with(compact('links'));
     }
