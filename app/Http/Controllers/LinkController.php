@@ -15,9 +15,10 @@ class LinkController extends Controller
      */
     public function index()
     {
+        $linksNum = Link::notRead()->notDismissed()->notStarred()->count();
         $links = Link::notRead()->notDismissed()->notStarred()->limit(100)->get();
 
-        return view('pages.links.index')->with(compact('links'));
+        return view('pages.links.index')->with(compact('links', 'linksNum'));
     }
 
     /**
@@ -28,8 +29,9 @@ class LinkController extends Controller
     public function read()
     {
         $links = Link::read()->get();
+        $linksNum = $links->count();
 
-        return view('pages.links.index')->with(compact('links'));
+        return view('pages.links.index')->with(compact('links', 'linksNum'));
     }
 
     /**
@@ -40,8 +42,9 @@ class LinkController extends Controller
     public function unread()
     {
         $links = Link::notRead()->get();
+        $linksNum = $links->count();
 
-        return view('pages.links.index')->with(compact('links'));
+        return view('pages.links.index')->with(compact('links', 'linksNum'));
     }
 
     /**
@@ -52,8 +55,9 @@ class LinkController extends Controller
     public function dismissed()
     {
         $links = Link::dismissed()->get();
+        $linksNum = $links->count();
 
-        return view('pages.links.index')->with(compact('links'));
+        return view('pages.links.index')->with(compact('links', 'linksNum'));
     }
 
     /**
@@ -64,8 +68,9 @@ class LinkController extends Controller
     public function notDismissed()
     {
         $links = Link::notDismissed()->get();
+        $linksNum = $links->count();
 
-        return view('pages.links.index')->with(compact('links'));
+        return view('pages.links.index')->with(compact('links', 'linksNum'));
     }
 
     /**
@@ -76,8 +81,9 @@ class LinkController extends Controller
     public function starred()
     {
         $links = Link::starred()->get();
+        $linksNum = $links->count();
 
-        return view('pages.links.index')->with(compact('links'));
+        return view('pages.links.index')->with(compact('links', 'linksNum'));
     }
 
     /**
@@ -88,8 +94,9 @@ class LinkController extends Controller
     public function notStarred()
     {
         $links = Link::notStarred()->get();
+        $linksNum = $links->count();
 
-        return view('pages.links.index')->with(compact('links'));
+        return view('pages.links.index')->with(compact('links', 'linksNum'));
     }
 
     /**
