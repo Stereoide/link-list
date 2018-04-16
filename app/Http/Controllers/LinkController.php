@@ -39,7 +39,7 @@ class LinkController extends Controller
      */
     public function notRead()
     {
-        $links = Link::notRead()->get();
+        $links = Link::unread()->get();
 
         return view('pages.links.index')->with(compact('links'));
     }
