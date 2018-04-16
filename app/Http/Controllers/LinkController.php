@@ -15,7 +15,7 @@ class LinkController extends Controller
      */
     public function index()
     {
-        $links = Link::unread()->notDismissed()->notStarred()->get();
+        $links = Link::notRead()->notDismissed()->notStarred()->get();
 
         return view('pages.links.index')->with(compact('links'));
     }
@@ -37,9 +37,9 @@ class LinkController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function unread()
+    public function notRead()
     {
-        $links = Link::unread()->get();
+        $links = Link::notRead()->get();
 
         return view('pages.links.index')->with(compact('links'));
     }
