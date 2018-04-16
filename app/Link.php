@@ -24,7 +24,7 @@ class Link extends Model
 
     /* Scopes */
 
-    public function scopeUnread($query)
+    public function scopeNotRead($query)
     {
         return $query->whereNull('read_at');
     }
