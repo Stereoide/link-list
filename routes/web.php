@@ -23,7 +23,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/links/{link}/unstar', 'LinkController@unstar')->name('links.unstar');
 
     Route::get('/links/read', 'LinkController@read')->name('links.read');
-    Route::get('/links/notread', 'LinkController@notRead')->name('links.notread');
+    Route::get('/links/unread', 'LinkController@unread')->name('links.unread');
     Route::get('/links/starred', 'LinkController@starred')->name('links.starred');
     Route::get('/links/notstarred', 'LinkController@notStarred')->name('links.notstarred');
     Route::get('/links/dismissed', 'LinkController@dismissed')->name('links.dismissed');
