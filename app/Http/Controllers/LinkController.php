@@ -15,7 +15,7 @@ class LinkController extends Controller
      */
     public function index()
     {
-        $links = Link::notRead()->notDismissed()->notStarred()->get();
+        $links = Link::notRead()->notDismissed()->notStarred()->limit(100)->get();
 
         return view('pages.links.index')->with(compact('links'));
     }
