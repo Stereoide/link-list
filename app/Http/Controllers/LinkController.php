@@ -217,7 +217,7 @@ class LinkController extends Controller
 
                 $link = Link::where('url', $url)->first();
                 if (is_null($link)) {
-                    $link = Link::create(['url' => $url, 'title' => $title, ]);
+                    $link = Link::create(['url' => $url, 'title' => substr($title, 0, 255), ]);
                 }
             });
 
